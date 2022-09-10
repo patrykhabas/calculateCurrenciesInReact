@@ -16,17 +16,16 @@ function Select({ selection, setSelection, setLoadingState }) {
     axios
       .get(url)
       .then((response) => {
-        const filteredRates = response.data[0].rates.filter((el) => {
-          if (availableCurrencies.includes(el.code)) {
-            return el;
-          }
-        });
+        const filteredRates = response.data[0].rates.filter((el) =>
+          availableCurrencies.includes(el.code)
+        );
         setCurrencies(filteredRates);
       })
       .catch((err) => console.error(err))
       .finally(() => {
         setLoadingState(false);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
